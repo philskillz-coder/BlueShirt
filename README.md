@@ -1,0 +1,2 @@
+# BlueShirt
+BlueShirt Discord-Bot
