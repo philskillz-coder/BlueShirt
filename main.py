@@ -1,16 +1,13 @@
 import asyncio
 import logging
 import logging.handlers
-import os
 
-import asyncpg
 import discord
 from discord.ext import commands
-from aiohttp import ClientSession
 
-from BlueShirt.Bot import BlueShirtBot, Translator
-from Cogs.test import Test
 import config
+from BlueShirt.Bot import BlueShirtBot
+from Cogs.test import Test
 
 
 class Bot(BlueShirtBot):
@@ -39,11 +36,19 @@ async def main():
         backupCount=5,  # Rotate through 5 files
     )
     dt_fmt = '%Y-%m-%d %H:%M:%S'
-    formatter = logging.Formatter('[{asctime}] [{levelname:<8}] {name}: {message}', dt_fmt, style='{')
+    formatter = logging.Formatter(
+        '[{asctime}] [{levelname:<8}] {name}: {message}',
+        dt_fmt,
+        style='{'
+    )
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-    async with Bot(commands.when_mentioned, intents=discord.Intents.default(), application_id=config.application_id) as bot:
+    async with Bot(
+            command_prefix=commands.when_mentioned,
+            intents=discord.Intents.default(),
+            application_id=config.application_id
+    ) as bot:
         await bot.start(config.client_token)
 
 
