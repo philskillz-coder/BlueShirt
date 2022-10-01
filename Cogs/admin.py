@@ -16,9 +16,10 @@ class AdminCog(
 ):
     @app_commands.command(
         name="execsql",
-        description="Execute SQL on Database"
+        description="Execute SQL on Database",
+
     )
-    @app_commands.describe(query=_T("admin.execsql.args.query"))  # T:The SQL Query to be executed
+    @app_commands.describe(query="sql")
     @admin.owner_only()
     async def execute_sql(
             self,

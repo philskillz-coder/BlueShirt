@@ -15,15 +15,15 @@ class Bot(BlueShirtBot):
     async def setup_hook(self):
         guild = discord.Object(id=880594690297188363)
 
-        await self.load_extension("Cogs.admin")
-
-        await self.tree.sync(guild=guild)
-
         self.pool = await asyncpg.create_pool(
             **config.database_params
         )
 
+        await self.load_extension("Cogs.admin")
+
         await self.tree.set_translator(Translator(self))
+
+        await self.tree.sync(guild=guild)
 
         print("Successfully synced applications commands")
         print(f"Connected as {self.user}")
