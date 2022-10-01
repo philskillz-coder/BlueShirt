@@ -1,9 +1,6 @@
-from typing import List
-
-import discord
 from discord import app_commands
 
-from BlueShirt.Bot import BetterAppCommandGroup, BetterInteraction
+from BlueShirt.Bot.app import BetterAppCommandGroup, BetterInteraction
 
 
 class Test(BetterAppCommandGroup):
