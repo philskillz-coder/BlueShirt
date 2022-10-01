@@ -16,8 +16,7 @@ class AdminCog(
 ):
     @app_commands.command(
         name="execsql",
-        description="Execute SQL on Database",
-
+        description="admin.execute_sql.description",
     )
     @app_commands.describe(query="sql")
     @admin.owner_only()

@@ -13,11 +13,11 @@ class Translator(app_commands.Translator):
         # noinspection SpellCheckingInspection
         self.translations: Dict[str, Dict[str, str]] = {
             "en-US": {
-
+                "admin.execute_sql.description": "Execute SQL on Database"
             },
             "de": {
-
-            }
+                "admin.execute_sql.description": "SQL auf Datenbank ausführen"
+            }  # only temporary (should be stored in database)
         }
 
     async def load(self):
