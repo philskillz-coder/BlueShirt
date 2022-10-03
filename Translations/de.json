@@ -1,0 +1,6 @@
+{
+    "admin.description": "Administrator Werkzeuge",
+    "admin.execute_sql.description": "SQL auf Datenbank ausf\u00fchren",
+    "admin.execute_sql.query": "Das auszuf\u00fchrende SQL",
+    "guild.description": "Gildenbezogene Dinge"
+}

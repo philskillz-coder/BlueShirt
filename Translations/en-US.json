@@ -1,0 +1,6 @@
+{
+    "admin.description": "Administrator tools",
+    "admin.execute_sql.description": "Execute sql on Database",
+    "admin.execute_sql.query": "The SQL to be executed",
+    "guild.description": "Guild related stuff"
+}

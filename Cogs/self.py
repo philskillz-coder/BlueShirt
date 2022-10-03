@@ -4,13 +4,13 @@ from BlueShirt.Bot.app import BetterInteraction
 from BlueShirt.Bot.bot import BlueShirtBot, BetterCog
 
 
-class Preset(
+class Self(
     BetterCog,
-    name="preset",
-    description="Preset GroupCog"
+    name="self",
+    description="Your own settings"
 ):
     pass
 
 
 async def setup(client: BlueShirtBot):
-    await client.add_cog(Preset(client))
+    await client.add_cog(Self(client))

@@ -12,24 +12,25 @@ from tabulate import tabulate
 class AdminCog(
     BetterCog,
     name="administrator",
-    description="Administrator tools"
+    description="admin.description"
 ):
     @app_commands.command(
         name="execsql",
         description="admin.execute_sql.description",
     )
-    @app_commands.describe(query="sql")
+    @app_commands.describe(query="admin.execute_sql.query")
     @admin.owner_only()
     async def execute_sql(
             self,
             interaction: BetterInteraction,
             query: str
     ):
-        async with self.client.pool.acquire() as cursor:  # todo: custom pool class with acquire typehint: Cursor
+
+        async with self.client.pool.acquire() as cursor:
             rows = await cursor.fetch(query)
             if not rows:
                 await interaction.response.send_message(
-                    "No Data",
+                    "The query returned no results",
                     ephemeral=True
                 )
 
@@ -45,6 +46,20 @@ class AdminCog(
                 ephemeral=True
             )
 
+    @app_commands.command(
+        name="dispatch_error"
+    )
+    @admin.owner_only()
+    async def error(self, interaction: BetterInteraction):
+        raise discord.DiscordException("Error")
+
+    @app_commands.command(
+        name="dispatch_guild_join"
+    )
+    @admin.owner_only()
+    async def dispatch_guild_join(self, interaction: BetterInteraction):
+        self.client.dispatch("guild_join", guild=interaction.guild)
+        await interaction.response.send_message("dispatched")
 
 async def setup(client: BlueShirtBot):
     await client.add_cog(AdminCog(client), guild=discord.Object(id=880594690297188363))
