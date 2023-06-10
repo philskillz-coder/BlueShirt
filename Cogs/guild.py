@@ -11,7 +11,7 @@ class Guild(
 ):
     @BetterCog.listener()
     async def on_guild_join(self, guild: discord.Guild):
-        print("Guild Join: %s" % guild.name)
+        print(f"Guild Join: {guild.name}")
         async with self.client.pool.acquire() as cursor:
             guild_exists, = await cursor.fetchrow("SELECT EXISTS(SELECT 1 FROM guilds WHERE guild_id = $1);", guild.id)
             if not guild_exists:
@@ -24,14 +24,14 @@ class Guild(
                         # under here
                         embed.set_thumbnail(url=guild.icon.url)
                         embed.description = "Start the configuration process with `/guild autoconfigure`\n" \
-                                            "You can also do all settings manually. For a list of settings do " \
-                                            "`/help settings`"
+                                                "You can also do all settings manually. For a list of settings do " \
+                                                "`/help settings`"
                         embed.set_footer(text="With Confidence: BlueShirt", icon_url=self.client.user.avatar.url)
                         # above here
                         await channel.send(
                             embed=embed
                         )
-                        print("message sent in %s" % channel.name)
+                        print(f"message sent in {channel.name}")
                         break
 
 
