@@ -34,9 +34,3 @@ while not done:
             locales[_l][key] = _lT
         print("Saved.\n")
         save()
-
-    if command == "e":
-        pass
-
-    if command == "ek":
-        pass
